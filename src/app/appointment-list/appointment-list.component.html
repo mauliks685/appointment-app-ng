@@ -1,0 +1,76 @@
+<style>
+  .jumbotron {
+    height: 80px;
+  }
+  .highlighted-card {
+    background-color: #9b9b9b; /* Light gray background color */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 5px; /* Border radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+  }
+  .btn-black {
+    background-color: #000000; /* Black background color */
+    border-color: #000000; /* Black border color */
+  }
+  .btn-black:hover {
+    background-color: #333333; /* Darker shade of black on hover */
+    border-color: #333333; /* Darker shade of black border color on hover */
+  }
+
+  .appointment-list {
+    background-color: #9b9b9b; /* Light gray background color */
+  }
+</style>
+<div class="jumbotron jumbotron-fluid bg-black text-white text-center w-100">
+  <h1>Appointment Managemnt System</h1>
+</div>
+<div class="container">
+  <div class="card mt-3 highlighted-card">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center text-white">Create new appointment</h2>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col md-6">
+        <input
+          class="form-control"
+          [(ngModel)]="newAppointmentTitle"
+          type="text"
+          placeholder="Appointment description"
+        />
+      </div>
+
+      <div class="col md-4">
+        <input
+          class="form-control"
+          [(ngModel)]="newAppointmentDate"
+          type="date"
+          placeholder="Appointment date"
+        />
+      </div>
+
+      <div class="col md-2">
+        <button class="btn btn-black text-white" (click)="addAppointment()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="appointment-list">
+    <h2 class="text-center mt-5 text-white">Appointments</h2>
+    <ul class="list-group mt-3">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let appointment of appointments; index as i"
+      >
+        {{ appointment.title }}
+        {{ appointment.date | date : "dd.MM.YYYY" }}
+        <button class="btn btn-danger" (click)="deleteAppointment(i)">
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
